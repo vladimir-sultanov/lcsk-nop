@@ -1,0 +1,12 @@
+C:\CurrentProjects\Flowershop\_MainDev\nopCommerceOriginal\Plugins\Nop.Plugin.Misc.LiveChat\bin\Debug\Nop.Plugin.Misc.LiveChat.dll
+C:\CurrentProjects\Flowershop\_MainDev\nopCommerceOriginal\Plugins\Nop.Plugin.Misc.LiveChat\bin\Debug\Nop.Plugin.Misc.LiveChat.pdb
+C:\CurrentProjects\Flowershop\_MainDev\nopCommerceOriginal\Plugins\Nop.Plugin.Misc.LiveChat\bin\Debug\Microsoft.AspNet.SignalR.Core.dll
+C:\CurrentProjects\Flowershop\_MainDev\nopCommerceOriginal\Plugins\Nop.Plugin.Misc.LiveChat\bin\Debug\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\CurrentProjects\Flowershop\_MainDev\nopCommerceOriginal\Plugins\Nop.Plugin.Misc.LiveChat\bin\Debug\Microsoft.Owin.dll
+C:\CurrentProjects\Flowershop\_MainDev\nopCommerceOriginal\Plugins\Nop.Plugin.Misc.LiveChat\bin\Debug\Owin.dll
+C:\CurrentProjects\Flowershop\_MainDev\nopCommerceOriginal\Plugins\Nop.Plugin.Misc.LiveChat\bin\Debug\Microsoft.AspNet.SignalR.Core.xml
+C:\CurrentProjects\Flowershop\_MainDev\nopCommerceOriginal\Plugins\Nop.Plugin.Misc.LiveChat\bin\Debug\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\CurrentProjects\Flowershop\_MainDev\nopCommerceOriginal\Plugins\Nop.Plugin.Misc.LiveChat\bin\Debug\Microsoft.Owin.xml
+C:\CurrentProjects\Flowershop\_MainDev\nopCommerceOriginal\Plugins\Nop.Plugin.Misc.LiveChat\obj\Debug\Nop.Plugin.Misc.LiveChat.csprojResolveAssemblyReference.cache
+C:\CurrentProjects\Flowershop\_MainDev\nopCommerceOriginal\Plugins\Nop.Plugin.Misc.LiveChat\obj\Debug\Nop.Plugin.Misc.LiveChat.dll
+C:\CurrentProjects\Flowershop\_MainDev\nopCommerceOriginal\Plugins\Nop.Plugin.Misc.LiveChat\obj\Debug\Nop.Plugin.Misc.LiveChat.pdb

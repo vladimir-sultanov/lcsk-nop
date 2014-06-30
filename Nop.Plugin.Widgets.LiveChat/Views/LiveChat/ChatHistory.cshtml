@@ -1,0 +1,213 @@
+﻿@using Nop.Core.Domain.Localization;
+@using Nop.Web.Framework;
+@using Nop.Web.Framework.UI;
+@using Nop.Core;
+@using Nop.Core.Domain.Common;
+@using Nop.Core.Infrastructure;
+@using Nop.Services.Security;
+@{
+    //Layout = "~/Administration/Views/Shared/_AdminPopupLayout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat History</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+
+
+    @*<link href="@Url.Content("~/Content/jquery-ui-themes/smoothness/jquery-ui-1.10.3.custom.min.css")" rel="stylesheet">*@
+    <link href="@Url.Content("~/Content/kendo/2014.1.318/kendo.common.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/kendo/2014.1.318/kendo.default.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/kendo/2014.1.318/kendo.common.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Administration/Content/styles.css")" rel="stylesheet">
+
+    @*<script src="@Url.Content("~/Scripts/jquery-ui-1.10.3.custom.min.js")" type="text/javascript"></script>*@ 
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")" type="text/javascript"></script> 
+    @*<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>*@
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>    
+    <script src="@Url.Content("~/Scripts/kendo/2014.1.318/kendo.web.min.js")" type="text/javascript"></script>    
+</head>
+<body>    
+    <table class="adminContent">
+        <tr>
+            <td>
+                <div id="chatsession-history-grid"></div>
+
+                <script type="text/javascript">
+                    @{
+                        int gridPageSize = EngineContext.Current.Resolve<Nop.Core.Domain.Common.AdminAreaSettings>().GridPageSize;
+                     }
+                    $(document).ready(function () {
+                        $("#chatsession-history-grid").kendoGrid({
+                            dataSource: {
+                                type: "json",
+                                transport: {
+                                    read: {
+                                        url: "@Html.Raw(Url.Action("ChatHistory", "LiveChat", new RouteValueDictionary() { { "Namespaces", "Nop.Plugin.Widgets.LiveChat.Controllers" }, { "area", "" } }))",
+                                        type: "POST",
+                                        dataType: "json"
+                                    },
+                                    @*update: {
+                                    url:"@Html.Raw(Url.Action("ShippingRateUpdate", "ShippingFixedRate", new RouteValueDictionary() { { "Namespaces", "Nop.Plugin.Widgets.LiveChat.Controllers" }, { "area", "" } }))",
+                                    type: "POST",
+                                    dataType: "json"
+                                }*@
+                                },
+                                schema: {
+                                    data: "Data",
+                                    total: "Total",
+                                    errors: "Errors",
+                                    model: {
+                                        id: "Id",
+                                        fields: {
+                                            //Id : { editable: false, type: "int" },
+                                            SessionId : { editable: false, type: "string" },
+                                            Name: { editable: false, type: "string" },
+                                            Email: { editable: false, type: "string" },
+                                            Messages: { editable: false, type: "html"},
+                                            ConnectedAt: { editable: false, type: "string" },
+                                            Url: { editable: false, type: "string" },
+                                            ClientIp: { editable: false, type: "string" },
+                                            OperatingSystem: { editable: false, type: "string" },
+                                            Browser: { editable: false, type: "string" },
+                                            ConnectedAt: { editable: false, type: "string" }
+                                        }
+                                    }
+                                },
+                                requestEnd: function (e) {
+                                    if (e.type == "update") {
+                                        this.read();
+                                    }
+                                },
+                                error: function (e) {
+                                    display_kendoui_grid_error(e);
+                                    // Cancel the changes
+                                    this.cancelChanges();
+                                },
+                                pageSize: @(gridPageSize),
+                                serverPaging: true,
+                                serverFiltering: true,
+                                serverSorting: true
+                            },
+                            pageable: {
+                                refresh: true
+                            },
+                            editable: {
+                                confirmation: false,
+                                mode: "inline"
+                            },
+                            scrollable: false,
+                            columns: [{
+                                field: "SessionId",
+                                title: "@T("Plugins.Widgets.LiveChat.Fields.SessionId")",
+                                width: 50
+                            },
+                                 @*{
+                            field: "Rate",
+                            title: "@T("Plugins.Shipping.FixedRateShipping.Fields.Rate")",
+                            width: 200,
+                            editor: function (container, options) {
+                                $('<input name="' + options.field + '"/>')
+                                        .appendTo(container)
+                                        .kendoNumericTextBox({
+                                            format: "{0:n4}",
+                                            decimals: 4
+                                        });
+                            }*@
+                            {
+                                field: "Name",
+                                title: "@T("Plugins.Widgets.LiveChat.Fields.Name")",
+                                width: 50
+                            },
+                            {
+                                field: "Email",
+                                title: "@T("Plugins.Widgets.LiveChat.Fields.Email")",
+                                width: 50
+                            },
+                            {
+                                field: "Messages",
+                                title: "@T("Plugins.Widgets.LiveChat.Fields.Messages")",
+                                width: 400,
+                                encoded: false
+                            },
+                            {
+                                field: "ConnectedAt",
+                                title: "@T("Plugins.Widgets.LiveChat.Fields.ConnectedAt")",
+                                width: 50
+                            },
+                            {
+                                field: "Url",
+                                title: "@T("Plugins.Widgets.LiveChat.Fields.Url")",
+                                width: 50
+                            },
+                            {
+                                field: "ClientIp",
+                                title: "@T("Plugins.Widgets.LiveChat.Fields.ClientIp")",
+                                width: 50
+                            },
+                            {
+                                field: "OperatingSystem",
+                                title: "@T("Plugins.Widgets.LiveChat.Fields.OperatingSystem")",
+                                width: 50
+                            },
+                            {
+                                field: "Browser",
+                                title: "@T("Plugins.Widgets.LiveChat.Fields.Browser")",
+                                width: 50
+                            },
+                            {
+                                field: "SendToEmail",
+                                title: "@T("Plugins.Widgets.LiveChat.Fields.SendToEmail")",
+                                width: 300,
+                                template:kendo.template($("#chat-history-template").html())
+                            }]
+                        });
+                    });
+                </script>
+                <script id="chat-history-template" type="text/x-kendo-template">                    
+                    <form method="post" class="send-email-form-#: Id #" id="send_email_form_#: Id #">
+                        <span id="send_info"></span><br />
+                        <input id="chat_box_email" type="email" name="email" required />
+                        <br />
+                        <input type="button" name="send_to_email" class="k-button" value="@T("Plugins.Widgets.LiveChat.Fields.SendToEmail")" onclick="SendChatHistoryToEmail('send_email_form_#: Id #', '#: Id #')" />
+                        
+                    </form>
+                </script>
+                <script type="text/javascript">
+                    function SendChatHistoryToEmail(formId, id)
+                    {
+                        var formEmail = $('#' + formId);
+
+                        formEmail.validate({
+                            rules: {                                
+                                chat_box_email: {
+                                    required: true,
+                                    email: true
+                                }
+                            }
+                        });
+
+                        formEmail.validate();
+
+                        if(!formEmail.valid()) return;
+
+                        var toEmail = formEmail.find('#chat_box_email').val();
+
+                        $.getJSON('/livechat/SendChatHistoryToEmail',
+                             { toEmail: toEmail, chatId: id },
+                             function (result) {
+                                 formEmail.find('#send_info').text(result.message);
+                             });
+                    }
+                </script>
+        </td>
+        </tr>
+    </table>       
+
+    
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,28 @@
+﻿  body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        .chat-session {
+            padding: 3px 3px 3px 3px;
+            height: 65px;
+            border-bottom: 1px solid #000;
+            cursor: pointer;
+        }
+
+            .chat-session.active {
+                background-color: lightgray;
+                cursor: default;
+            }
+
+        .chat-msgs {
+            height: 650px;
+            padding: 3px 3px 3px 3px;
+            border: 3px dashed lightgray;
+            margin-bottom: 10px;
+            overflow-y: auto;
+        }

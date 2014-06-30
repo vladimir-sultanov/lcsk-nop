@@ -1,0 +1,68 @@
+﻿@using Nop.Core.Domain.Localization;
+@using Nop.Web.Framework;
+@using Nop.Web.Framework.UI;
+@using Nop.Core;
+@using Nop.Core.Domain.Common;
+@using Nop.Core.Infrastructure;
+@using Nop.Services.Security;
+@using System.Web.Mvc;
+@using Nop.Web.Framework.UI;
+
+@model Nop.Plugin.Widgets.LiveChat.Models.LiveChatModel
+
+@{
+    Layout = "";
+        
+   // <link href="@Url.Content("~/Plugins/Widgets.LiveChat/Content/css/bootstrap.min.css")" rel="stylesheet">
+   // <link href="@Url.Content("~/Plugins/Widgets.LiveChat/Content/css/bootstrap-theme.min.css")" rel="stylesheet">
+       
+    <script src="@Url.Content("~/Plugins/Widgets.LiveChat/Scripts/jquery.timeago.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Plugins/Widgets.LiveChat/Scripts/jquery.signalR-2.0.3.min.js")" type="text/javascript"></script>
+    @*<script src="@Url.Content("~/Plugins/Widgets.LiveChat/Scripts/signalr/hubs")" type="text/javascript"></script>*@
+    <script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
+    @*<script src="@Url.Content("~/Plugins/Widgets.LiveChat/Scripts/bootstrap.min.js")"></script>*@
+    @*<script src="@Url.Content("~/Plugins/Widgets.LiveChat/Scripts/jquery.validate.min.js")"></script>*@
+    <script src="@Url.Content("~/Plugins/Widgets.LiveChat/Scripts/lcsk/chat.js")" type="text/javascript"></script>
+    <script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+}
+@*<div class="captcha-box" id="livechat_captcha_box">
+    @Html.Raw(Html.GenerateCaptcha())
+</div>*@
+<script type="text/javascript">
+    @{System.Web.HttpBrowserCapabilities browser = HttpContext.Current.Request.Browser;
+      string browserType = browser.Type;
+      string browserPlatform =  browser.Platform;
+     }
+    $(function () {
+        LCSKChat.config({
+            chatClientIp: '@Request.ServerVariables["REMOTE_ADDR"]',
+            browserType: '@browserType',
+            browserPlatform: '@browserPlatform',
+            recaptcharPublicKey: '@Model.ReCaptchaPublicKey',
+            reCaptchaTheme: '@Model.ReCaptchaTheme',
+            headerTooltipClose: '@T("Plugins.Widgets.LiveChat.Options.HeaderTooltipClose")")',
+            offlineTitle : '@T("Plugins.Widgets.LiveChat.Options.OfflineTitle")")',
+            onlineTitle: '@T("Plugins.Widgets.LiveChat.Options.OnlineTitle")',
+            waitingForOperator: '@T("Plugins.Widgets.LiveChat.Options.WaitingForOperator")',
+            emailSent: '@T("Plugins.Widgets.LiveChat.Options.EmailSent")',
+            emailFailed: '@T("Plugins.Widgets.LiveChat.Options.EmailFailed")',
+            buttonValueContactus: '@T("Plugins.Widgets.LiveChat.Options.ButtonValueContactus")',
+            buttonValueStartChat: '@T("Plugins.Widgets.LiveChat.Options.ButtonValueStartChat")',
+            lableTextName: '@T("Plugins.Widgets.LiveChat.Options.LableTextName")',
+            lableTextEmail: '@T("Plugins.Widgets.LiveChat.Options.LableTextEmail")',
+            lableTextYouremail: '@T("Plugins.Widgets.LiveChat.Options.LableTextYouremail")',
+            lableTextYourMessage: '@T("Plugins.Widgets.LiveChat.Options.LableTextYourMessage")',
+            infoTextHaveaQuestion: '@T("Plugins.Widgets.LiveChat.Options.InfoTextHaveaQuestion")',
+            infoTextAddYourQuestion: '@T("Plugins.Widgets.LiveChat.Options.InfoTextAddYourQuestion")',
+            infoTextContinuingYourChatWith: '@T("Plugins.Widgets.LiveChat.Options.InfoTextContinuingYourChatWith")',
+            infoTextYouAreNowChattingWith: '@T("Plugins.Widgets.LiveChat.Options.InfoTextYouAreNowChattingWith")',
+            captchaErrorMessage: '@T("Plugins.Widgets.LiveChat.Options.СaptchaErrorMessage")',
+            captchaRequiredMessage: '@T("Plugins.Widgets.LiveChat.Options.CaptchaRequiredMessage")',
+            
+        });
+        LCSKChat.init();
+
+    });
+
+</script>
+
