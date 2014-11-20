@@ -41,7 +41,6 @@ namespace Nop.Plugin.Widgets.LiveChat
         #endregion
 #endregion
 
-
         #region ILiveChatService Implements
         public IPagedList<LiveChatLog> GetAllChatLogs(int pageIndex, int pageSize)
         {

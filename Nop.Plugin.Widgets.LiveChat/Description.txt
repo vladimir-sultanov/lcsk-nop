@@ -2,7 +2,7 @@
 FriendlyName: LiveChat Starter Kit
 SystemName: Widgets.LiveChat
 Version: 1.0
-SupportedVersions: 3.30
+SupportedVersions: 3.40
 Author: nopCommerce team
 DisplayOrder: 1
 FileName: Nop.Plugin.Widgets.LiveChat.dll

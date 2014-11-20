@@ -9,8 +9,8 @@ var LCSKChat = function () {
 
     var options = [];
 
-    var chatClientName = "";
-    var chatClientEmail = "";
+    var chatClientName = '';
+    var chatClientEmail = '';
 
     var offlineEmailForm;
     var clientDataForm;
@@ -27,6 +27,7 @@ var LCSKChat = function () {
         options.headerGradientStart = '#058bf5';
         options.headerGradientEnd = '#015ee6';
         options.headerFontSize = '15px';
+
         options.headerTooltipClose = 'Close the chat';
 
         options.boxBorderColor = '#0376ee';
@@ -34,33 +35,35 @@ var LCSKChat = function () {
 
         options.width = 450;
 
+        //Ui options
         options.offlineTitle = 'Contact us!';
         options.onlineTitle = 'Chat with us!';
-
         options.waitingForOperator = 'Thanks, give us 1 minute to accept the chat...';
         options.emailSent = 'Your email was sent, thanks we\'ll get back to you asap.';
         options.emailFailed = 'Doh! The email could not be sent at the moment.<br /><br />Sorry about that.';
-        options.buttonValueContactus = "Contact us";
-        options.buttonValueStartChat = "Start chat";
-        options.lableTextName = "Name";
-        options.lableTextEmail = "Email";
-        options.lableTextYouremail = "Your email";
-        options.lableTextYourMessage = "Your message";
-        options.infoTextHaveaQuestion = "Have a question? Let\'s chat!";
-        options.infoTextAddYourQuestion = "Add your question on the field below and press ENTER.";
-        options.infoTextContinuingYourChatWith = "Continuing your chat with";
-        options.infoTextYouAreNowChattingWith = "You are now chatting with";
-        options.recaptcharPublicKey = "";
-        options.recaptcharElementId = "recaptcha_div";
-        options.reCaptchaTheme = "";
-        options.captchaErrorMessage = "Not valid captcha";
-        options.captchaRequiredMessage = "This field is required";
+        options.buttonValueContactus = 'Contact us';
+        options.buttonValueStartChat = 'Start chat';
+        options.lableTextName = 'Name';
+        options.lableTextEmail = 'Email';
+        options.lableTextYouremail = 'Your email';
+        options.lableTextYourMessage = 'Your message';
+        options.infoTextHaveaQuestion = 'Have a question? Let\'s chat!';
+        options.infoTextAddYourQuestion = 'Add your question on the field below and press ENTER.';
+        options.infoTextContinuingYourChatWith = 'Continuing your chat with';
+        options.infoTextYouAreNowChattingWith = 'You are now chatting with';
+
+        options.recaptcharPublicKey = '';
+        options.recaptcharElementId = 'recaptcha_div';
+        options.reCaptchaTheme = '';
+
+        options.captchaErrorMessage = 'Not valid captcha!';
+        options.captchaRequiredMessage = 'This field is required!';
 
         
 
-        options.chatClientIp = "";
-        options.browserType = "";
-        options.browserPlatform = "";
+        options.chatClientIp = '';
+        options.browserType = '';
+        options.browserPlatform = '';
 
     }
 

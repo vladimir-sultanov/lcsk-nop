@@ -11,7 +11,6 @@ namespace Nop.Plugin.Widgets.LiveChat.Models
     public class LiveChatModel : BaseNopModel
     {
         #region constructors
-
         public LiveChatModel()
         {
 

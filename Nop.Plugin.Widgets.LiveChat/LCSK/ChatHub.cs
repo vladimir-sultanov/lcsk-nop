@@ -48,42 +48,26 @@ namespace Nop.Plugin.Widgets.LiveChat.LCSK
 
         #region Fields
 
-        private Dictionary<string, Agent> Agents
+        private static Dictionary<string, Agent> _agents;
+
+        private static Dictionary<string, ChatClient> _chatClients;
+
+        private static Dictionary<string, Agent> Agents
         {
             get
             {
-                if (HttpContext.Current.Cache[CacheKeyAgents] != null)
-                    return (Dictionary<string, Agent>)HttpContext.Current.Cache[CacheKeyAgents];
-                else
-                {
-                    Dictionary<string, Agent> agents = new Dictionary<string, Agent>();
-                    HttpContext.Current.Cache.Add(
-                        CacheKeyAgents,
-                        agents,
-                        null,
-                        DateTime.Now.AddHours(1),
-                        TimeSpan.Zero, System.Web.Caching.CacheItemPriority.Default, null);
-                    return agents;
-                }
+                if (_agents == null)
+                    _agents = new Dictionary<string, Agent>();                                    
+                    return _agents;                
             }
         }
         private Dictionary<string, ChatClient> ChatClients
         {
             get
             {
-                if (HttpContext.Current.Cache[CacheKeyChatClient] != null)
-                    return (Dictionary<string, ChatClient>)HttpContext.Current.Cache[CacheKeyChatClient];
-                else
-                {
-                    Dictionary<string, ChatClient> clients = new Dictionary<string, ChatClient>();
-                    HttpContext.Current.Cache.Add(
-                        CacheKeyChatClient,
-                        clients,
-                        null,
-                        DateTime.Now.AddHours(1),
-                        TimeSpan.Zero, System.Web.Caching.CacheItemPriority.Default, null);
-                    return clients;
-                }
+                if (_chatClients == null)
+                    _chatClients = new Dictionary<string, ChatClient>();
+                return _chatClients;                
             }
         }    
 
@@ -249,7 +233,7 @@ namespace Nop.Plugin.Widgets.LiveChat.LCSK
             }            
         }
 
-        public override Task OnDisconnected()
+        public override Task OnDisconnected(bool stopCalled)
         {
             return Clients.All.leave(Context.ConnectionId);
         }

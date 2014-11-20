@@ -67,9 +67,10 @@ namespace Nop.Plugin.Widgets.LiveChat
             { 
                 
                 //desktop version (you can also replace it with "head_html_tag")
-                "body_end_html_tag_before", 
+                "home_page_top"
+                //"body_end_html_tag_before", 
                 //mobile version
-                "mobile_body_end_html_tag_before" 
+                //"mobile_body_end_html_tag_before" 
             };
         }
 

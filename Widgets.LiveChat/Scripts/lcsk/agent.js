@@ -1,4 +1,5 @@
-﻿var myHub = null;
+﻿
+var myHub = null;
 
 var agent = {
     id: '',

@@ -66,7 +66,7 @@ namespace Nop.Plugin.Widgets.LiveChat.Controllers
                 ea => new EmailAccount() { Id = ea.Id, Name = ea.DisplayName }
                 ).ToList();
 
-            return View("Nop.Plugin.Widgets.LiveChat.Views.LiveChat.Configure", liveChatModel);
+            return View("~/Plugins/Widgets.LiveChat/Views/LiveChat/Configure.cshtml", liveChatModel);
         }
 
         [HttpPost]
@@ -90,22 +90,22 @@ namespace Nop.Plugin.Widgets.LiveChat.Controllers
         [ChildActionOnly]
         public ActionResult PublicInfo(string widgetZone)
         {
-            LiveChatModel liveChatModel = new LiveChatModel();
+            var liveChatModel = new LiveChatModel();
             liveChatModel.ReCaptchaPublicKey = _captchaSettings.ReCaptchaPublicKey;
             liveChatModel.ReCaptchaTheme = _captchaSettings.ReCaptchaTheme;
-            return View("Nop.Plugin.Widgets.LiveChat.Views.LiveChat.PublicInfo", liveChatModel);
+            return View("~/Plugins/Widgets.LiveChat/Views/LiveChat/PublicInfo.cshtml", liveChatModel);            
         }
 
         [Authorize]
         public ActionResult Agent()
-        {
-            return View("Nop.Plugin.Widgets.LiveChat.Views.LiveChat.Agent");
+        {   
+            return View("~/Plugins/Widgets.LiveChat/Views/LiveChat/Agent.cshtml");
         }
 
         [Authorize]
         public ActionResult ChatHistory()
         {
-            return View("Nop.Plugin.Widgets.LiveChat.Views.LiveChat.ChatHistory");
+            return View("~/Plugins/Widgets.LiveChat/Views/LiveChat/ChatHistory.cshtml");            
         }
 
         public JsonResult SendEmailMessage(string toEmail, string message)
@@ -212,9 +212,9 @@ namespace Nop.Plugin.Widgets.LiveChat.Controllers
                         message = EngineContext.Current.Resolve<ILocalizationService>().GetResource("Plugins.Widgets.LiveChat.Email.EmailNotSent")
                     }, JsonRequestBehavior.AllowGet);
 
-                var from = new MailAddress(emailAccount.Email);
-                var to = new MailAddress(toEmail);
-                _emailSender.SendEmail(emailAccount, subject, body, from, to);
+                string fromEmail = emailAccount.Email;
+                string toDisplayName = emailAccount.DisplayName;                  
+                _emailSender.SendEmail(emailAccount, subject, body, fromEmail, toDisplayName, toEmail, null);
             }
             catch
             {

@@ -1,0 +1,82 @@
+﻿@{
+    Layout = "";
+}
+@model LiveChatModel
+@using Nop.Core
+@using Nop.Core.Infrastructure
+@using Nop.Plugin.Widgets.LiveChat.Models
+@using Nop.Web.Framework;
+@using Nop.Web.Framework.UI;
+
+@using (Html.BeginForm())
+{
+<div id="livechat-configure">
+    <ul>
+        <li @Html.RenderSelectedTabIndex(0, GetSelectedTabIndex())>
+            @T("Nop.Plugin.Widgets.LiveChat.Tab.General")
+        </li>
+        <li @Html.RenderSelectedTabIndex(1, GetSelectedTabIndex())>
+            @T("Nop.Plugin.Widgets.LiveChat.Tab.Other")
+        </li>
+    </ul>
+    <div>
+        @TabGeneral()
+    </div>    
+</div>
+<script>
+    $(document).ready(function () {
+        $("#livechat-configure").kendoTabStrip({
+            animation: {
+                open: {
+                    effects: "fadeIn"
+                }
+            },
+            select: tabstrip_on_tab_select
+        });
+    });
+</script>
+}
+    
+@helper TabGeneral()
+{    
+    <table class="adminContent">
+        <tr>
+            <td colspan="2">
+                Live chat settings
+            </td>
+        </tr>
+        <tr class="adminSeparator">
+            <td colspan="2">
+                <hr />
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @T("Nop.Plugin.Widgets.LiveChat.Tab.SelectEmailAccount")                
+            </td>
+            <td class="adminData">
+                <select name="SelectedEmailAccountId" id="SelectedEmailAccountId">
+                    @foreach (EmailAccount emailAccount in Model.EmailAccounts)
+                    {
+                        string selected = "";
+                        if(emailAccount.Id == Model.SelectedEmailAccountId)
+                        { 
+                            selected = "selected";                        
+                        }
+                        <option @selected value="@emailAccount.Id">@emailAccount.Name</option>
+                    }
+                </select>
+            </td>                
+        </tr>
+    </table>
+    
+    <br />
+    <table class="adminContent">
+        <tr>
+            <td colspan="2">
+                <input type="submit" name="save" class="k-button" value="@T("Admin.Common.Save")" />
+            </td>
+        </tr>
+    </table>
+}
+
