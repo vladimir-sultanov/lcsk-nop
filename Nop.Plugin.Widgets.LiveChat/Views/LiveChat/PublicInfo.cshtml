@@ -8,8 +8,7 @@
        
     <script src="@Url.Content("~/Plugins/Widgets.LiveChat/Scripts/jquery.timeago.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Plugins/Widgets.LiveChat/Scripts/jquery.signalR-2.0.3.min.js")" type="text/javascript"></script>
-    @*<script src="@Url.Content("~/Plugins/Widgets.LiveChat/Scripts/signalr/hubs")" type="text/javascript"></script>*@
-    <script src="@Url.Content("http://localhost:8093/signalr/hubs")" type="text/javascript"></script>
+    <script src="@Url.Content(@Model.SignalRPath + "/signalr/hubs")" type="text/javascript"></script>
     @*<script src="@Url.Content("~/Plugins/Widgets.LiveChat/Scripts/bootstrap.min.js")"></script>*@
     @*<script src="@Url.Content("~/Plugins/Widgets.LiveChat/Scripts/jquery.validate.min.js")"></script>*@
     <script src="@Url.Content("~/Plugins/Widgets.LiveChat/Scripts/lcsk/chat.js")" type="text/javascript"></script>
@@ -31,7 +30,7 @@
     });
 
     $(function () {
-        $.connection.hub.url = "http://localhost:8093/signalr";
+        $.connection.hub.url = '@Model.SignalRPath' + '/signalr';
         LCSKChat.config({
             //chatClientIp: '',
             browserType: browserInfo.browserName,

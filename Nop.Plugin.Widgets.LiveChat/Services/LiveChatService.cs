@@ -14,6 +14,7 @@ using System.Xml.Serialization;
 using System.IO;
 using Nop.Plugin.ActiveForever.ActiveChat.Hubs;
 using Nop.Core;
+using System.Web;
 
 namespace Nop.Plugin.Widgets.LiveChat
 {
@@ -115,7 +116,7 @@ namespace Nop.Plugin.Widgets.LiveChat
             catch (Exception ex)
             {
                 isSaved = false;
-                throw ex;
+                //throw ex;
             }
             return isSaved;
         }
@@ -135,6 +136,13 @@ namespace Nop.Plugin.Widgets.LiveChat
                     chatMessages += s + "<br />";
             }            
             return chatMessages;
+        }
+        public string GetSignaRStartPath()
+        {
+            string rootPath = "http://localhost";
+            int port = _liveChatSettings.SignalRPort == 0 ? 8093 : _liveChatSettings.SignalRPort;
+            string signalRPath = string.Format("{0}:{1}", rootPath, port);
+            return signalRPath;
         }
 
         #endregion

@@ -25,6 +25,12 @@ namespace Nop.Plugin.Widgets.LiveChat.Models
         [NopResourceDisplayName("Nop.Plugin.Widgets.LiveChat.Models.LiveChatModel.LiveChatResult")]
         public string LiveChatResult { get; set; }
 
+        [NopResourceDisplayName("Nop.Plugin.Widgets.LiveChat.Models.LiveChatModel.SignalRPort")]
+        public int SignalRPort { get; set; }
+
+        [NopResourceDisplayName("Nop.Plugin.Widgets.LiveChat.Models.LiveChatModel.SignalRPath")]
+        public string SignalRPath { get; set; }
+
         [NopResourceDisplayName("Nop.Plugin.Widgets.LiveChat.Models.LiveChatModel.EmailAccounts")]
         public IList<EmailAccount> EmailAccounts { get; set; }
 

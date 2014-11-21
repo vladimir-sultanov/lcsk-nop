@@ -91,7 +91,14 @@ namespace Nop.Plugin.Widgets.LiveChat.LCSK
                 IsOnline = true
             };
 
-            Agents.Add(agent.Id, agent);
+            if (!Agents.ContainsKey(agent.Id))
+            {
+                Agents.Add(agent.Id, agent);
+            }
+            else   
+            {
+                Agents[agent.Id] = agent;
+            }
 
             Clients.Caller.loginResult(true, agent.Id, agent.Name);
 

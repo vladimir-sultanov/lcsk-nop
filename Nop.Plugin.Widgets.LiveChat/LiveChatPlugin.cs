@@ -7,6 +7,7 @@ using Nop.Services.Common;
 using Nop.Services.Configuration;
 using Nop.Services.Messages;
 using Nop.Plugin.Widgets.LiveChat.Data;
+using Nop.Core.Infrastructure;
 
 namespace Nop.Plugin.Widgets.LiveChat
 {
@@ -18,7 +19,7 @@ namespace Nop.Plugin.Widgets.LiveChat
         public LiveChatPlugin(ISettingService settingService, LiveChatObjectContext objectContext)
         {
             this._settingService = settingService;
-            this._objectContext = objectContext;
+            this._objectContext = objectContext;            
         }
 
         #region Methods

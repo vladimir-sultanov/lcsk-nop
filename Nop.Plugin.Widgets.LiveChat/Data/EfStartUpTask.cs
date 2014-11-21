@@ -14,9 +14,7 @@ namespace Nop.Plugin.Widgets.LiveChat.Data
         {
             //It's required to set initializer to null (for SQL Server Compact).
             //otherwise, you'll get something like "The model backing the 'your context name' context has changed since the database was created. Consider using Code First Migrations to update the database"
-            Database.SetInitializer<LiveChatObjectContext>(null);
-
-            SignalRSelfHost.Start();
+            Database.SetInitializer<LiveChatObjectContext>(null);            
         }
 
         public int Order

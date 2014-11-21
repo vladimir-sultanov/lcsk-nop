@@ -8,5 +8,10 @@ namespace Nop.Plugin.Widgets.LiveChat
         /// Email scoount for Offline message
         /// </summary>
         public int SelectedEmailAccountId { get; set; }
+
+        /// <summary>
+        /// Signal R port
+        /// </summary>
+        public int SignalRPort { get; set; }
     }
 }

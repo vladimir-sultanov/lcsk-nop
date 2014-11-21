@@ -26,5 +26,6 @@ namespace Nop.Plugin.Widgets.LiveChat
         void Export();
         bool SaveChat(string id, ChatClient client);
         string GetMessages(string serilizedMessages);
+        string GetSignaRStartPath();
     }
 }

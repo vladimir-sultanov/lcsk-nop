@@ -66,8 +66,18 @@
                         <option @selected value="@emailAccount.Id">@emailAccount.Name</option>
                     }
                 </select>
-            </td>                
+            </td>               
         </tr>
+        <tr>
+            <td class="adminTitle">
+                @T("Nop.Plugin.Widgets.LiveChat.Tab.SelectOwinSelfHostPort")
+            </td>
+            <td class="adminData">            
+                @Html.EditorFor(model => model.SignalRPort)
+                @Html.ValidationMessageFor(model => model.SignalRPort)            
+            </td>
+        </tr>
+
     </table>
     
     <br />

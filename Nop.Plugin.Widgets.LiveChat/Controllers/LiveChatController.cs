@@ -65,6 +65,7 @@ namespace Nop.Plugin.Widgets.LiveChat.Controllers
                 (
                 ea => new EmailAccount() { Id = ea.Id, Name = ea.DisplayName }
                 ).ToList();
+            liveChatModel.SignalRPort = this._liveChatSettings.SignalRPort;
 
             return View("~/Plugins/Widgets.LiveChat/Views/LiveChat/Configure.cshtml", liveChatModel);
         }
@@ -80,9 +81,12 @@ namespace Nop.Plugin.Widgets.LiveChat.Controllers
             }
 
             //save settings
-            _liveChatSettings.SelectedEmailAccountId = model.SelectedEmailAccountId;            
+            _liveChatSettings.SelectedEmailAccountId = model.SelectedEmailAccountId;
+            _liveChatSettings.SignalRPort = model.SignalRPort;
             _settingService.SaveSetting(_liveChatSettings);
-
+            string path = _liveChatService.GetSignaRStartPath();
+            SignalRSelfHost.SetUrl(path);
+            SignalRSelfHost.Restart();
             //redisplay the form
             return Configure();
         }
@@ -92,14 +96,17 @@ namespace Nop.Plugin.Widgets.LiveChat.Controllers
         {
             var liveChatModel = new LiveChatModel();
             liveChatModel.ReCaptchaPublicKey = _captchaSettings.ReCaptchaPublicKey;
-            liveChatModel.ReCaptchaTheme = _captchaSettings.ReCaptchaTheme;
+            liveChatModel.ReCaptchaTheme = _captchaSettings.ReCaptchaTheme;            
+            liveChatModel.SignalRPath = GetSignalRAppPath();
             return View("~/Plugins/Widgets.LiveChat/Views/LiveChat/PublicInfo.cshtml", liveChatModel);            
         }
 
         [Authorize]
         public ActionResult Agent()
-        {   
-            return View("~/Plugins/Widgets.LiveChat/Views/LiveChat/Agent.cshtml");
+        {
+            var liveChatModel = new LiveChatModel();
+            liveChatModel.SignalRPath = GetSignalRAppPath();
+            return View("~/Plugins/Widgets.LiveChat/Views/LiveChat/Agent.cshtml", liveChatModel);
         }
 
         [Authorize]
@@ -228,6 +235,10 @@ namespace Nop.Plugin.Widgets.LiveChat.Controllers
 
         }
 
+        private string GetSignalRAppPath()
+        {
+            return _liveChatService.GetSignaRStartPath().Replace("localhost", Request.Url.Host);
+        }
         #endregion
 
     }
